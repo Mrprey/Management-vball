@@ -4,6 +4,7 @@ import '../../adapters/controllers/player_controller.dart';
 import '../../application/use_cases/player_registry.dart';
 import '../../constants/colors.dart';
 import '../../constants/sizes.dart';
+import '../../constants/translations.dart';
 
 class PlayerView extends StatefulWidget {
   const PlayerView({super.key});
@@ -23,7 +24,7 @@ class _PlayerViewState extends State<PlayerView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Player Registration'),
+        title: Text(Translations.of(context).playerRegistration),
         backgroundColor: AppColors.primary,
       ),
       body: Padding(
@@ -32,16 +33,16 @@ class _PlayerViewState extends State<PlayerView> {
           children: [
             TextField(
               controller: _nameController,
-              decoration: const InputDecoration(labelText: 'Name'),
+              decoration: InputDecoration(labelText: Translations.of(context).name),
             ),
             TextField(
               controller: _numberController,
-              decoration: const InputDecoration(labelText: 'Number'),
+              decoration: InputDecoration(labelText: Translations.of(context).number),
               keyboardType: TextInputType.number,
             ),
             TextField(
               controller: _roleController,
-              decoration: const InputDecoration(labelText: 'Role'),
+              decoration: InputDecoration(labelText: Translations.of(context).role),
             ),
             const SizedBox(height: AppSizes.medium),
             ElevatedButton(
@@ -53,8 +54,8 @@ class _PlayerViewState extends State<PlayerView> {
                 _controller.addPlayer(name, number, role);
 
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Player successfully registered!'),
+                  SnackBar(
+                    content: Text(Translations.of(context).playerRegistered),
                   ),
                 );
 
@@ -62,7 +63,7 @@ class _PlayerViewState extends State<PlayerView> {
                 _numberController.clear();
                 _roleController.clear();
               },
-              child: const Text('Register'),
+              child: Text(Translations.of(context).register),
             ),
           ],
         ),

@@ -33,16 +33,19 @@ class _PlayerViewState extends State<PlayerView> {
           children: [
             TextField(
               controller: _nameController,
-              decoration: InputDecoration(labelText: Translations.of(context).name),
+              decoration:
+                  InputDecoration(labelText: Translations.of(context).name),
             ),
             TextField(
               controller: _numberController,
-              decoration: InputDecoration(labelText: Translations.of(context).number),
+              decoration:
+                  InputDecoration(labelText: Translations.of(context).number),
               keyboardType: TextInputType.number,
             ),
             TextField(
               controller: _roleController,
-              decoration: InputDecoration(labelText: Translations.of(context).role),
+              decoration:
+                  InputDecoration(labelText: Translations.of(context).role),
             ),
             const SizedBox(height: AppSizes.medium),
             ElevatedButton(

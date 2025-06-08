@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../adapters/controllers/player_controller.dart';
 import '../../application/use_cases/player_registry.dart';
+import '../../constants/colors.dart';
+import '../../constants/sizes.dart';
 
 class PlayerView extends StatefulWidget {
   const PlayerView({super.key});
@@ -22,9 +24,10 @@ class _PlayerViewState extends State<PlayerView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Player Registration'),
+        backgroundColor: AppColors.primary,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(AppSizes.medium),
         child: Column(
           children: [
             TextField(
@@ -40,7 +43,7 @@ class _PlayerViewState extends State<PlayerView> {
               controller: _roleController,
               decoration: const InputDecoration(labelText: 'Role'),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: AppSizes.medium),
             ElevatedButton(
               onPressed: () {
                 final name = _nameController.text;
@@ -51,7 +54,8 @@ class _PlayerViewState extends State<PlayerView> {
 
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
-                      content: Text('Player successfully registered!')),
+                    content: Text('Player successfully registered!'),
+                  ),
                 );
 
                 _nameController.clear();

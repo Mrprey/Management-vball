@@ -1,16 +1,16 @@
-import '../../application/use_cases/register_player.dart';
+import '../../application/use_cases/player_registry.dart';
 import '../../domain/entities/player.dart';
 
 class PlayerController {
-  final RegisterPlayer _registerPlayer;
+  final PlayerRegistry _playerRegistry;
 
-  PlayerController(this._registerPlayer);
+  PlayerController(this._playerRegistry);
 
   Player addPlayer(String name, int number, String position) {
-    return _registerPlayer.addPlayer(name, number, position);
+    return _playerRegistry.addPlayer(name, number, position);
   }
 
   List<Player> listPlayers() {
-    return _registerPlayer.listPlayers();
+    return _playerRegistry.listPlayers();
   }
 }

@@ -1,24 +1,10 @@
 import 'package:flutter/material.dart';
+
 import '../../adapters/controllers/player_controller.dart';
-import '../../application/use_cases/register_player.dart';
-import '../../domain/entities/player.dart';
-
-class PlayerRegistry {
-  final List<Player> _players = [];
-
-  Player addPlayer(String name, int number, String role) {
-    final newPlayer = Player(name: name, number: number, position: role);
-    _players.add(newPlayer);
-    return newPlayer;
-  }
-
-  List<Player> listPlayers() {
-    return _players;
-  }
-}
+import '../../application/use_cases/player_registry.dart';
 
 class PlayerView extends StatefulWidget {
-  const PlayerView({Key? key}) : super(key: key);
+  const PlayerView({super.key});
 
   @override
   _PlayerViewState createState() => _PlayerViewState();
@@ -29,7 +15,7 @@ class _PlayerViewState extends State<PlayerView> {
   final _numberController = TextEditingController();
   final _roleController = TextEditingController();
 
-  final _controller = PlayerController(RegisterPlayer());
+  final _controller = PlayerController(PlayerRegistry());
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +50,8 @@ class _PlayerViewState extends State<PlayerView> {
                 _controller.addPlayer(name, number, role);
 
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Player successfully registered!')),
+                  const SnackBar(
+                      content: Text('Player successfully registered!')),
                 );
 
                 _nameController.clear();

@@ -8,7 +8,10 @@ class Translations {
 
   Translations(this.context);
 
-  static Translations of(BuildContext context) => Translations(context);
+  static Translations ofContext(BuildContext context) => Translations(context);
+  static Translations of(BuildContext context) {
+    return Translations(context);
+  }
 
   static Map<String, String> _localizedStrings = {};
 
@@ -18,14 +21,14 @@ class Translations {
     _localizedStrings = Map<String, String>.from(json.decode(jsonString));
   }
 
-  static String of(String key) {
+  String _getTranslation(String key) {
     return _localizedStrings[key] ?? key;
   }
 
-  String get playerRegistration => of('playerRegistration');
-  String get name => of('name');
-  String get number => of('number');
-  String get role => of('role');
-  String get register => of('register');
-  String get playerRegistered => of('playerRegistered');
+  String get playerRegistration => _getTranslation('playerRegistration');
+  String get name => _getTranslation('name');
+  String get number => _getTranslation('number');
+  String get role => _getTranslation('role');
+  String get register => _getTranslation('register');
+  String get playerRegistered => _getTranslation('playerRegistered');
 }

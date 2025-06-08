@@ -54,7 +54,7 @@
 
 ## Pull Request Guidelines
 
-- **Description Format**: The description of a Pull Request must be written in Markdown format, including emojis to enhance readability and structure. For example:
+- **Description Format**: The description of a Pull Request must be written in Markdown format, in English, and include emojis to enhance readability and structure. The description must also be enclosed in a code block to allow easy copying. For example:
 
   ```markdown
   ### 🚀 Feature Description

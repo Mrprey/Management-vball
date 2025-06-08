@@ -52,4 +52,23 @@
 
 - **Remove Unused Imports**: Ensure that all unused imports are removed from the code to maintain cleanliness and avoid unnecessary dependencies.
 
+## Pull Request Guidelines
+
+- **Description Format**: The description of a Pull Request must be written in Markdown format, in English, and include emojis to enhance readability and structure. The description must also be enclosed in a code block to allow easy copying. For example:
+
+  ```markdown
+  ### 🚀 Feature Description
+
+  This PR introduces...
+
+  ### 🛠️ Changes Made
+
+  - Change 1
+  - Change 2
+
+  ### ✅ How to Test
+
+  Steps to test the changes...
+  ```
+
 Following these rules ensures cleaner, more organized, and maintainable code.

@@ -19,7 +19,6 @@ void main() {
       getAllPlayersUseCase = GetAllPlayersUseCase(repository);
       viewModel = PlayerViewModel(registerUseCase, getAllPlayersUseCase);
 
-      // Clear repository between tests
       repository.clear();
     });
 
@@ -29,10 +28,8 @@ void main() {
       expect(viewModel.errorMessage, isNull);
     });
     test('should register a player and update players list', () async {
-      // Act
       await viewModel.addPlayer('John Doe', 10, PlayerPositions.setter);
 
-      // Assert
       final players = await repository.getAllPlayers();
       expect(players.length, 1);
       expect(players[0].name, 'John Doe');
@@ -45,17 +42,14 @@ void main() {
     });
 
     test('should load players', () async {
-      // Arrange
       final testPlayers = [
         Player(name: 'John Doe', number: 10, position: PlayerPositions.setter),
         Player(name: 'Jane Smith', number: 5, position: 'Libero'),
       ];
       repository.addTestPlayers(testPlayers);
 
-      // Act
       await viewModel.loadPlayers();
 
-      // Assert
       expect(viewModel.players.length, 2);
       expect(viewModel.players[0].name, 'John Doe');
       expect(viewModel.players[1].name, 'Jane Smith');

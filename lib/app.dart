@@ -11,7 +11,6 @@ class App extends StatelessWidget {
       title: 'Volleyball Management',
       theme: AppThemes.lightTheme,
       darkTheme: AppThemes.darkTheme,
-      themeMode: ThemeMode.system, // Usar o tema do sistema
       home: const PlayerView(),
     );
   }

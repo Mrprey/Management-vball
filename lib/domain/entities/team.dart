@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:uuid/uuid.dart';
+
 import 'player.dart';
 
 class Team extends Equatable {
@@ -11,7 +12,7 @@ class Team extends Equatable {
     String? id,
     required this.name,
     required this.players,
-  }) : this.id = id ?? const Uuid().v4();
+  }) : id = id ?? const Uuid().v4();
 
   Team copyWith({
     String? id,

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:management_vball/core/constants/player_positions.dart';
 import 'package:management_vball/core/constants/sizes.dart';
 import 'package:management_vball/core/constants/translations.dart';
 import 'package:management_vball/core/di/service_locator.dart';
 import 'package:management_vball/presentation/view_models/player_view_model.dart';
+import 'package:provider/provider.dart';
 
 class PlayerView extends StatefulWidget {
   const PlayerView({super.key});
@@ -74,7 +74,7 @@ class _PlayerViewState extends State<PlayerView> {
             value: _selectedPosition,
             decoration: InputDecoration(
               labelText: Translations.of(context).role,
-              border: OutlineInputBorder(),
+              border: const OutlineInputBorder(),
             ),
             items: PlayerPositions.getPositionItems(),
             onChanged: (value) {

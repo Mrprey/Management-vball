@@ -16,7 +16,6 @@ void main() {
       registerUseCase = RegisterPlayerUseCase(repository);
       getAllPlayersUseCase = GetAllPlayersUseCase(repository);
 
-      // Clear repository between tests
       repository.clear();
     });
     test(

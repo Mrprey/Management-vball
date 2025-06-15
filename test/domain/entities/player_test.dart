@@ -52,7 +52,7 @@ void main() {
       expect(player.toString(), contains('test-id'));
       expect(player.toString(), contains('John Doe'));
       expect(player.toString(), contains('10'));
-      expect(player.toString(), contains('L')); // The position code
+      expect(player.toString(), contains('L'));
     });
   });
 }

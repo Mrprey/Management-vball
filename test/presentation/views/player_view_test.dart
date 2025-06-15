@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:provider/provider.dart';
+import 'package:get_it/get_it.dart';
+import 'package:management_vball/core/constants/translations.dart';
 import 'package:management_vball/domain/use_cases/player_use_cases.dart';
 import 'package:management_vball/presentation/view_models/player_view_model.dart';
-import 'package:management_vball/core/constants/translations.dart';
-import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
 
 import '../../data/repositories/fake_player_repository.dart';
 
-// Mock do PlayerView para evitar a chamada ao GetIt
 class MockPlayerView extends StatefulWidget {
   final PlayerViewModel viewModel;
 
-  const MockPlayerView({Key? key, required this.viewModel}) : super(key: key);
+  const MockPlayerView({super.key, required this.viewModel});
 
   @override
   _MockPlayerViewState createState() => _MockPlayerViewState();
@@ -21,7 +20,7 @@ class MockPlayerView extends StatefulWidget {
 class _MockPlayerViewState extends State<MockPlayerView> {
   final _nameController = TextEditingController();
   final _numberController = TextEditingController();
-  String _selectedPosition = 'L'; // Default position (Setter)
+  String _selectedPosition = 'L';
 
   @override
   void initState() {
@@ -65,9 +64,9 @@ class _MockPlayerViewState extends State<MockPlayerView> {
                         value: _selectedPosition,
                         decoration: InputDecoration(
                           labelText: Translations.of(context).role,
-                          border: OutlineInputBorder(),
+                          border: const OutlineInputBorder(),
                         ),
-                        items: [
+                        items: const [
                           DropdownMenuItem(
                               value: 'L', child: Text('L - Setter')),
                           DropdownMenuItem(
@@ -108,7 +107,7 @@ class _MockPlayerViewState extends State<MockPlayerView> {
                               _nameController.clear();
                               _numberController.clear();
                               setState(() {
-                                _selectedPosition = 'L'; // Reset to default
+                                _selectedPosition = 'L';
                               });
 
                               ScaffoldMessenger.of(context).showSnackBar(
@@ -124,7 +123,8 @@ class _MockPlayerViewState extends State<MockPlayerView> {
                       const SizedBox(height: 16.0),
                       Expanded(
                         child: model.players.isEmpty
-                            ? Center(child: Text('No players registered yet'))
+                            ? const Center(
+                                child: Text('No players registered yet'))
                             : ListView.builder(
                                 itemCount: model.players.length,
                                 itemBuilder: (context, index) {
@@ -148,7 +148,6 @@ class _MockPlayerViewState extends State<MockPlayerView> {
 
 void main() {
   setUp(() async {
-    // Mock translations
     Map<String, String> mockTranslations = {
       'playerRegistration': 'Player Registration',
       'name': 'Name',
@@ -159,7 +158,6 @@ void main() {
     };
     Translations.setMockStrings(mockTranslations);
 
-    // Clear GetIt singleton if initialized
     if (GetIt.I.isRegistered<PlayerViewModel>()) {
       await GetIt.I.reset();
     }
@@ -183,35 +181,26 @@ void main() {
 
   testWidgets('PlayerView should display input fields and register button',
       (WidgetTester tester) async {
-    // Arrange
     await pumpPlayerView(tester);
-    await tester.pumpAndSettle(); // Wait for complete rendering
+    await tester.pumpAndSettle();
 
-    // Assert
-    expect(find.byType(TextField),
-        findsAtLeast(2)); // Dois campos de texto (nome e número)
-    expect(find.byType(DropdownButtonFormField<String>),
-        findsOneWidget); // Dropdown para posições
-    expect(find.byType(ElevatedButton), findsOneWidget); // Register button
+    expect(find.byType(TextField), findsAtLeast(2));
+    expect(find.byType(DropdownButtonFormField<String>), findsOneWidget);
+    expect(find.byType(ElevatedButton), findsOneWidget);
   });
 
   testWidgets('PlayerView should register a player and show message',
       (WidgetTester tester) async {
-    // Arrange
     await pumpPlayerView(tester);
     await tester.pumpAndSettle();
 
-    // Act
     await tester.enterText(find.byType(TextField).at(0), 'John Doe');
     await tester.enterText(find.byType(TextField).at(1), '10');
-    // No need to enter text for position, as it uses a dropdown with default value
     await tester.pump();
 
     await tester.tap(find.byType(ElevatedButton));
     await tester.pumpAndSettle();
 
-    // Assert
-    expect(
-        find.text('John Doe'), findsWidgets); // O nome deve aparecer na lista
+    expect(find.text('John Doe'), findsWidgets);
   });
 }

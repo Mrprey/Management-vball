@@ -12,7 +12,7 @@ class Player extends Equatable {
     required this.name,
     required this.number,
     required this.position,
-  }) : this.id = id ?? const Uuid().v4();
+  }) : id = id ?? const Uuid().v4();
 
   @override
   List<Object?> get props => [id, name, number, position];

@@ -11,7 +11,6 @@ class AppThemes {
       colorScheme: const ColorScheme.light(
         primary: AppColors.primary,
         secondary: AppColors.secondary,
-        surface: AppColors.surface,
         error: AppColors.error,
       ),
       appBarTheme: const AppBarTheme(
@@ -68,7 +67,6 @@ class AppThemes {
         primary: AppColors.primaryDark,
         secondary: AppColors.secondaryDark,
         surface: AppColors.surfaceDark,
-        error: AppColors.errorDark,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(

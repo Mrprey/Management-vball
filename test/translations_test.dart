@@ -1,8 +1,20 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter_test/flutter_test.dart';
-import 'package:volei_project/constants/translations_en.dart';
-import 'package:volei_project/constants/translations_pt.dart';
 
 void main() {
+  late Map<String, dynamic> translationsEn;
+  late Map<String, dynamic> translationsPt;
+
+  setUpAll(() {
+    final enFile = File('lib/constants/translations_en.json');
+    final ptFile = File('lib/constants/translations_pt.json');
+
+    translationsEn = json.decode(enFile.readAsStringSync());
+    translationsPt = json.decode(ptFile.readAsStringSync());
+  });
+
   group('Translations', () {
     test('English translations should have all keys', () {
       expect(translationsEn.keys, containsAll(translationsPt.keys));
@@ -14,13 +26,13 @@ void main() {
 
     test('No empty values in English translations', () {
       for (var value in translationsEn.values) {
-        expect(value.isNotEmpty, true);
+        expect(value.toString().isNotEmpty, true);
       }
     });
 
     test('No empty values in Portuguese translations', () {
       for (var value in translationsPt.values) {
-        expect(value.isNotEmpty, true);
+        expect(value.toString().isNotEmpty, true);
       }
     });
   });

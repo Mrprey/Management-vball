@@ -21,7 +21,7 @@ class MockPlayerView extends StatefulWidget {
 class _MockPlayerViewState extends State<MockPlayerView> {
   final _nameController = TextEditingController();
   final _numberController = TextEditingController();
-  final _roleController = TextEditingController();
+  String _selectedPosition = 'L'; // Default position (Setter)
   
   @override
   void initState() {
@@ -33,7 +33,6 @@ class _MockPlayerViewState extends State<MockPlayerView> {
   void dispose() {
     _nameController.dispose();
     _numberController.dispose();
-    _roleController.dispose();
     super.dispose();
   }
 
@@ -54,29 +53,48 @@ class _MockPlayerViewState extends State<MockPlayerView> {
                     TextField(
                       controller: _nameController,
                       decoration: InputDecoration(labelText: Translations.of(context).name),
-                    ),
-                    TextField(
+                    ),                    TextField(
                       controller: _numberController,
                       decoration: InputDecoration(labelText: Translations.of(context).number),
                       keyboardType: TextInputType.number,
                     ),
-                    TextField(
-                      controller: _roleController,
-                      decoration: InputDecoration(labelText: Translations.of(context).role),
+                    DropdownButtonFormField<String>(
+                      value: _selectedPosition,
+                      decoration: InputDecoration(
+                        labelText: Translations.of(context).role,
+                        border: OutlineInputBorder(),
+                      ),
+                      items: [
+                        DropdownMenuItem(value: 'L', child: Text('L - Setter')),
+                        DropdownMenuItem(value: 'P1', child: Text('P1 - Outside Hitter 1')),
+                        DropdownMenuItem(value: 'P2', child: Text('P2 - Outside Hitter 2')),
+                        DropdownMenuItem(value: 'O', child: Text('O - Opposite')),
+                        DropdownMenuItem(value: 'M1', child: Text('M1 - Middle Blocker 1')),
+                        DropdownMenuItem(value: 'M2', child: Text('M2 - Middle Blocker 2')),
+                        DropdownMenuItem(value: 'Lib', child: Text('Lib - Libero')),
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          if (value != null) {
+                            _selectedPosition = value;
+                          }
+                        });
+                      },
                     ),
                     const SizedBox(height: 16.0),
-                    
-                    ElevatedButton(
+                      ElevatedButton(
                       onPressed: () {
                         final name = _nameController.text;
                         final number = int.tryParse(_numberController.text) ?? 0;
-                        final role = _roleController.text;
+                        final role = _selectedPosition;
                         
                         model.addPlayer(name, number, role).then((_) {
                           if (model.errorMessage == null) {
                             _nameController.clear();
                             _numberController.clear();
-                            _roleController.clear();
+                            setState(() {
+                              _selectedPosition = 'L'; // Reset to default
+                            });
                             
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(content: Text(Translations.of(context).playerRegistered)),
@@ -145,15 +163,15 @@ void main() {
         ),
       ),
     );
-  }
-  testWidgets('PlayerView should display input fields and register button',
+  }  testWidgets('PlayerView should display input fields and register button',
       (WidgetTester tester) async {
     // Arrange
     await pumpPlayerView(tester);
     await tester.pumpAndSettle(); // Wait for complete rendering
 
     // Assert
-    expect(find.byType(TextField), findsAtLeast(3)); // Pelo menos 3 campos de texto
+    expect(find.byType(TextField), findsAtLeast(2)); // Dois campos de texto (nome e número)
+    expect(find.byType(DropdownButtonFormField<String>), findsOneWidget); // Dropdown para posições
     expect(find.byType(ElevatedButton), findsOneWidget); // Register button
   });
 
@@ -166,7 +184,7 @@ void main() {
     // Act
     await tester.enterText(find.byType(TextField).at(0), 'John Doe');
     await tester.enterText(find.byType(TextField).at(1), '10');
-    await tester.enterText(find.byType(TextField).at(2), 'Setter');
+    // No need to enter text for position, as it uses a dropdown with default value
     await tester.pump();
     
     await tester.tap(find.byType(ElevatedButton));

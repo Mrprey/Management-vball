@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:management_vball/core/constants/player_positions.dart';
 import 'package:management_vball/core/constants/sizes.dart';
 import 'package:management_vball/core/constants/translations.dart';
 import 'package:management_vball/core/di/service_locator.dart';
@@ -15,7 +16,7 @@ class PlayerView extends StatefulWidget {
 class _PlayerViewState extends State<PlayerView> {
   final _nameController = TextEditingController();
   final _numberController = TextEditingController();
-  final _roleController = TextEditingController();
+  String _selectedPosition = PlayerPositions.setter; // Default position
 
   late final PlayerViewModel _viewModel;
 
@@ -25,12 +26,10 @@ class _PlayerViewState extends State<PlayerView> {
     _viewModel = getIt<PlayerViewModel>();
     _viewModel.loadPlayers();
   }
-
   @override
   void dispose() {
     _nameController.dispose();
     _numberController.dispose();
-    _roleController.dispose();
     super.dispose();
   }
 
@@ -61,17 +60,27 @@ class _PlayerViewState extends State<PlayerView> {
             controller: _nameController,
             decoration:
                 InputDecoration(labelText: Translations.of(context).name),
-          ),
-          TextField(
+          ),          TextField(
             controller: _numberController,
             decoration:
                 InputDecoration(labelText: Translations.of(context).number),
             keyboardType: TextInputType.number,
           ),
-          TextField(
-            controller: _roleController,
-            decoration:
-                InputDecoration(labelText: Translations.of(context).role),
+          const SizedBox(height: AppSizes.small),
+          DropdownButtonFormField<String>(
+            value: _selectedPosition,
+            decoration: InputDecoration(
+              labelText: Translations.of(context).role,
+              border: OutlineInputBorder(),
+            ),
+            items: PlayerPositions.getPositionItems(),
+            onChanged: (value) {
+              setState(() {
+                if (value != null) {
+                  _selectedPosition = value;
+                }
+              });
+            },
           ),
           const SizedBox(height: AppSizes.medium),
           if (model.errorMessage != null)
@@ -81,18 +90,19 @@ class _PlayerViewState extends State<PlayerView> {
                 model.errorMessage!,
                 style: const TextStyle(color: Colors.red),
               ),
-            ),
-          ElevatedButton(
+            ),          ElevatedButton(
             onPressed: () {
               final name = _nameController.text;
               final number = int.tryParse(_numberController.text) ?? 0;
-              final role = _roleController.text;
+              final role = _selectedPosition;
 
               model.addPlayer(name, number, role).then((_) {
                 if (model.errorMessage == null) {
                   _nameController.clear();
                   _numberController.clear();
-                  _roleController.clear();
+                  setState(() {
+                    _selectedPosition = PlayerPositions.setter; // Reset to default
+                  });
 
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(

@@ -128,6 +128,23 @@ lib/
 
 - **Remove Unused Imports**: Ensure that all unused imports are removed from the code to maintain cleanliness and avoid unnecessary dependencies.
 
+## Domain-Specific Rules
+
+### Volleyball Player Positions
+
+17. **Valid Player Positions**: Players can only have the following volleyball positions:
+   - **L** = Levantador (Setter)
+   - **P1** = Ponteiro 1 (Outside Hitter 1) 
+   - **P2** = Ponteiro 2 (Outside Hitter 2)
+   - **O** = Oposto (Opposite)
+   - **M1** = Meio de Rede 1 (Middle Blocker 1)
+   - **M2** = Meio de Rede 2 (Middle Blocker 2)
+   - **Lib** = Líbero (Libero)
+
+18. **Position Validation**: All player positions must be validated against the allowed positions defined in `PlayerPositions` class. No custom positions are allowed.
+
+19. **Position Display**: When displaying positions in the UI, always show both the position code and description (e.g., "L - Setter").
+
 ## Pull Request Guidelines
 
 - **Description Format**: The description of a Pull Request must be written in Markdown format, in English, and include emojis to enhance readability and structure. The description must also be enclosed in a code block to allow easy copying. For example:

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:volei_project/core/constants/colors.dart';
+import 'package:volei_project/core/constants/themes.dart';
 import 'package:volei_project/presentation/views/player_view.dart';
 
 class App extends StatelessWidget {
@@ -9,14 +9,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Volleyball Management',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        primaryColor: AppColors.primary,
-        colorScheme: const ColorScheme.light(
-          primary: AppColors.primary,
-          secondary: AppColors.secondary,
-        ),
-      ),
+      theme: AppThemes.lightTheme,
+      darkTheme: AppThemes.darkTheme,
+      themeMode: ThemeMode.system, // Usar o tema do sistema
       home: const PlayerView(),
     );
   }

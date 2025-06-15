@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:volei_project/core/constants/colors.dart';
 import 'package:volei_project/core/constants/sizes.dart';
 import 'package:volei_project/core/constants/translations.dart';
 import 'package:volei_project/core/di/service_locator.dart';
@@ -40,11 +39,9 @@ class _PlayerViewState extends State<PlayerView> {
     return ChangeNotifierProvider.value(
       value: _viewModel,
       child: Consumer<PlayerViewModel>(
-        builder: (context, model, child) {
-          return Scaffold(
+        builder: (context, model, child) {          return Scaffold(
             appBar: AppBar(
               title: Text(Translations.of(context).playerRegistration),
-              backgroundColor: AppColors.primary,
             ),
             body: model.isLoading
                 ? const Center(child: CircularProgressIndicator())

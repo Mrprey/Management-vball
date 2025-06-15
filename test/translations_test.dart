@@ -4,34 +4,34 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  late Map<String, dynamic> translationsEn;
-  late Map<String, dynamic> translationsPt;
+  late Map<String, dynamic> enTranslations;
+  late Map<String, dynamic> ptTranslations;
 
   setUpAll(() {
-    final enFile = File('lib/constants/translations_en.json');
-    final ptFile = File('lib/constants/translations_pt.json');
+    final enFile = File('assets/translations_en.json');
+    final ptFile = File('assets/translations_pt.json');
 
-    translationsEn = json.decode(enFile.readAsStringSync());
-    translationsPt = json.decode(ptFile.readAsStringSync());
+    enTranslations = json.decode(enFile.readAsStringSync());
+    ptTranslations = json.decode(ptFile.readAsStringSync());
   });
 
   group('Translations', () {
     test('English translations should have all keys', () {
-      expect(translationsEn.keys, containsAll(translationsPt.keys));
+      expect(enTranslations.keys, containsAll(ptTranslations.keys));
     });
 
     test('Portuguese translations should have all keys', () {
-      expect(translationsPt.keys, containsAll(translationsEn.keys));
+      expect(ptTranslations.keys, containsAll(enTranslations.keys));
     });
 
     test('No empty values in English translations', () {
-      for (var value in translationsEn.values) {
+      for (var value in enTranslations.values) {
         expect(value.toString().isNotEmpty, true);
       }
     });
 
     test('No empty values in Portuguese translations', () {
-      for (var value in translationsPt.values) {
+      for (var value in ptTranslations.values) {
         expect(value.toString().isNotEmpty, true);
       }
     });

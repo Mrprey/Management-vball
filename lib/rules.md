@@ -17,15 +17,63 @@
 
 ## Architecture Pattern
 
-8. **Clean Architecture**: Follow the Clean Architecture pattern, organizing the project into well-defined layers:
-   - **Domain**: Contains the core entities and business rules.
-   - **Application**: Contains use cases that orchestrate application logic.
-   - **Infrastructure**: Contains repository implementations, external services, and data access.
-   - **UI**: Contains the user interface, including components, pages, and views.
+8. **MVVM Clean Architecture**: Follow the MVVM Clean Architecture pattern, organizing the project into well-defined layers:
+
+   - **Presentation Layer**:
+     - **Views**: UI components that display data and capture user input.
+     - **ViewModels**: Mediators between Views and Domain layer, handling UI logic and state.
+     - **Widgets**: Reusable UI components.
+
+   - **Domain Layer**:
+     - **Entities**: Core business objects.
+     - **Use Cases**: Application-specific business rules.
+     - **Repositories (Interfaces)**: Abstraction of data operations.
+     - **Services (Interfaces)**: Abstraction of external services.
+
+   - **Data Layer**:
+     - **Repositories (Implementations)**: Concrete implementations of repositories.
+     - **Data Sources**: Sources of data (local, remote).
+     - **Models**: Data transfer objects (DTOs).
+
+   - **Core Layer**:
+     - **Constants**: Application-wide constants.
+     - **Utils**: Utility functions and extensions.
+     - **DI**: Dependency injection configuration.
+     - **Exceptions**: Custom exceptions and error handling.
+
+9. **Dependency Injection**: Use GetIt for dependency injection to maintain loose coupling and facilitate testing.
+
+10. **State Management**: Use Provider for simple state management and reactivity in the presentation layer.
+
+## Project Structure
+
+### Directory Organization
+```
+lib/
+├── presentation/
+│   ├── views/          # Telas completas da aplicação
+│   ├── widgets/        # Componentes reutilizáveis da UI
+│   └── view_models/    # ViewModels para cada view
+├── domain/
+│   ├── entities/       # Modelos de domínio
+│   ├── repositories/   # Interfaces dos repositórios
+│   ├── use_cases/      # Casos de uso
+│   └── services/       # Interfaces de serviços
+├── data/
+│   ├── repositories/   # Implementações dos repositórios
+│   ├── data_sources/   # Fontes de dados
+│   └── models/         # DTOs e modelos de dados
+├── core/
+│   ├── constants/      # Constantes globais
+│   ├── utils/          # Utilidades e extensões
+│   ├── di/             # Container de injeção de dependência
+│   └── exceptions/     # Tratamento de exceções
+└── main.dart           # Ponto de entrada da aplicação
+```
 
 ## Project Constants
 
-### What should be added to files in `lib/constants/`:
+### What should be added to files in `lib/core/constants/`:
 - **Colors**: All colors used in the project should be centralized in `colors.dart`.
 - **Sizes**: Dimensions such as spacings, font sizes, and widths should be centralized in `sizes.dart`.
 - **Borders**: Border styles, such as radii and widths, should be centralized in `borders.dart`.

@@ -98,6 +98,8 @@ lib/
 
 11. **Small Functions**: Functions should be concise and limited to a maximum of 20 lines. If a function exceeds this limit, consider refactoring it into smaller, reusable functions.
 
+12. **Function Placement**: Functions within a class should be placed as close as possible to their caller, preferably directly below it, to improve readability and maintainability.
+
 ## Code Quality
 
 ## Testing

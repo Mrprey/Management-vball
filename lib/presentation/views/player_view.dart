@@ -58,33 +58,7 @@ class _PlayerViewState extends State<PlayerView> {
         padding: const EdgeInsets.all(AppSizes.medium),
         child: Column(
           children: [
-            TextField(
-              controller: _nameController,
-              decoration:
-                  InputDecoration(labelText: Translations.of(context).name),
-            ),
-            TextField(
-              controller: _numberController,
-              decoration:
-                  InputDecoration(labelText: Translations.of(context).number),
-              keyboardType: TextInputType.number,
-            ),
-            const SizedBox(height: AppSizes.small),
-            DropdownButtonFormField<String>(
-              value: _selectedPosition,
-              decoration: InputDecoration(
-                labelText: Translations.of(context).role,
-                border: const OutlineInputBorder(),
-              ),
-              items: PlayerPositions.getPositionItems(),
-              onChanged: (value) {
-                setState(() {
-                  if (value != null) {
-                    _selectedPosition = value;
-                  }
-                });
-              },
-            ),
+            _buildForm(context, model),
             const SizedBox(height: AppSizes.medium),
             if (model.errorMessage != null)
               Padding(
@@ -105,14 +79,15 @@ class _PlayerViewState extends State<PlayerView> {
                     _nameController.clear();
                     _numberController.clear();
                     setState(() {
-                      _selectedPosition =
-                          PlayerPositions.setter; // Reset to default
+                      _selectedPosition = PlayerPositions.setter;
                     });
 
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                          content:
-                              Text(Translations.of(context).playerRegistered)),
+                        content: Text(
+                          Translations.of(context).playerRegistered,
+                        ),
+                      ),
                     );
                   }
                 });
@@ -121,23 +96,62 @@ class _PlayerViewState extends State<PlayerView> {
             ),
             const SizedBox(height: AppSizes.medium),
             Expanded(
-              child: model.players.isEmpty
-                  ? const Center(child: Text('No players registered yet'))
-                  : ListView.builder(
-                      itemCount: model.players.length,
-                      itemBuilder: (context, index) {
-                        final player = model.players[index];
-                        return ListTile(
-                          title: Text(player.name),
-                          subtitle:
-                              Text('${player.number} - ${player.position}'),
-                        );
-                      },
-                    ),
+              child: _buildPlayerList(model),
             ),
           ],
         ),
       ),
     );
+  }
+
+  Widget _buildForm(BuildContext context, PlayerViewModel model) {
+    return Column(
+      children: [
+        TextField(
+          controller: _nameController,
+          decoration: InputDecoration(
+            labelText: Translations.of(context).name,
+          ),
+        ),
+        TextField(
+          controller: _numberController,
+          decoration: InputDecoration(
+            labelText: Translations.of(context).number,
+          ),
+          keyboardType: TextInputType.number,
+        ),
+        const SizedBox(height: AppSizes.small),
+        DropdownButtonFormField<String>(
+          value: _selectedPosition,
+          decoration: InputDecoration(
+            labelText: Translations.of(context).role,
+            border: const OutlineInputBorder(),
+          ),
+          items: PlayerPositions.getPositionItems(),
+          onChanged: (value) {
+            setState(() {
+              if (value != null) {
+                _selectedPosition = value;
+              }
+            });
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPlayerList(PlayerViewModel model) {
+    return model.players.isEmpty
+        ? const Center(child: Text('No players registered yet'))
+        : ListView.builder(
+            itemCount: model.players.length,
+            itemBuilder: (context, index) {
+              final player = model.players[index];
+              return ListTile(
+                title: Text(player.name),
+                subtitle: Text('${player.number} - ${player.position}'),
+              );
+            },
+          );
   }
 }

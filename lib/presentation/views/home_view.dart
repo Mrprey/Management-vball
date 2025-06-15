@@ -16,41 +16,49 @@ class HomeView extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    context.router.push(const PlayerView());
-                  },
-                  child: const Text('Go to Player View'),
-                ),
-              ],
-            ),
-          ),
-          Positioned(
-            bottom: 20,
-            right: 20,
-            child: Consumer<ThemeNotifier>(
-              builder: (context, themeNotifier, child) {
-                return IconButton(
-                  onPressed: () {
-                    themeNotifier.toggleTheme();
-                  },
-                  icon: Icon(
-                    themeNotifier.isDarkMode
-                        ? Icons.dark_mode
-                        : Icons.light_mode,
-                    color: themeNotifier.isDarkMode
-                        ? AppColors.primaryDark
-                        : AppColors.primary,
-                  ),
-                );
-              },
-            ),
+          _buildMainContent(context),
+          _buildThemeToggleButton(context),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMainContent(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              context.router.push(const PlayerView());
+            },
+            child: const Text('Go to Player View'),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildThemeToggleButton(BuildContext context) {
+    return Positioned(
+      bottom: 20,
+      right: 20,
+      child: Consumer<ThemeNotifier>(
+        builder: (context, themeNotifier, child) {
+          return IconButton(
+            onPressed: () {
+              themeNotifier.toggleTheme();
+            },
+            icon: Icon(
+              themeNotifier.isDarkMode
+                  ? Icons.dark_mode
+                  : Icons.light_mode,
+              color: themeNotifier.isDarkMode
+                  ? AppColors.primaryDark
+                  : AppColors.primary,
+            ),
+          );
+        },
       ),
     );
   }

@@ -17,18 +17,25 @@ class Translations {
 
   static Future<bool> load(String locale) async {
     try {
-      final jsonString =
-          await rootBundle.loadString('assets/translations_$locale.json');
-      _localizedStrings = Map<String, String>.from(json.decode(jsonString));
+      await _loadLocaleStrings(locale);
       return true;
     } catch (e) {
       developer.log('Error loading translations: $e', name: 'Translations');
-      // Fallback to English if locale translations not found
-      if (locale != 'en') {
-        return load('en');
-      }
-      return false;
+      return _fallbackToEnglish(locale);
     }
+  }
+
+  static Future<void> _loadLocaleStrings(String locale) async {
+    final jsonString =
+        await rootBundle.loadString('assets/translations_$locale.json');
+    _localizedStrings = Map<String, String>.from(json.decode(jsonString));
+  }
+
+  static Future<bool> _fallbackToEnglish(String locale) async {
+    if (locale != 'en') {
+      return load('en');
+    }
+    return false;
   }
 
   static void setMockStrings(Map<String, String> mockStrings) {

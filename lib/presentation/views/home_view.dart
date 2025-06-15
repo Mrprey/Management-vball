@@ -54,6 +54,20 @@ class HomeView extends StatelessWidget {
               style: Theme.of(context).textTheme.labelLarge,
             ),
           ),
+          ElevatedButton(
+            onPressed: () {
+              context.router.push(const RotationManagerView());
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Theme.of(context).colorScheme.primary,
+              foregroundColor: Theme.of(context).colorScheme.onPrimary,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(AppBorders.buttonRadius),
+              ),
+              padding: AppPaddings.medium,
+            ),
+            child: const Text('Go to Rotation Manager'),
+          ),
         ],
       ),
     );

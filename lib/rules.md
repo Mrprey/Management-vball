@@ -96,7 +96,7 @@ lib/
 
 11. **Consistent Error Handling**: Ensure that all error handling is consistent across the project. Use a centralized approach for logging and displaying errors to the user, avoiding redundant or scattered error management logic.
 
-11. **Small Functions**: Functions should be concise and limited to a maximum of 20 lines. If a function exceeds this limit, consider refactoring it into smaller, reusable functions.
+11. **Small Functions**: Functions should be concise and limited to a maximum of 10 lines. If a function exceeds this limit, consider refactoring it into smaller, reusable functions.
 
 12. **Function Placement**: Functions within a class should be placed as close as possible to their caller, preferably directly below it, to improve readability and maintainability.
 

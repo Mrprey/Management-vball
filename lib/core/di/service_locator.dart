@@ -11,16 +11,16 @@ void setupServiceLocator() {
   getIt.registerLazySingleton<PlayerRepository>(
     () => PlayerRepositoryImpl(),
   );
-  
+
   // Casos de uso
   getIt.registerFactory<RegisterPlayerUseCase>(
     () => RegisterPlayerUseCase(getIt<PlayerRepository>()),
   );
-  
+
   getIt.registerFactory<GetAllPlayersUseCase>(
     () => GetAllPlayersUseCase(getIt<PlayerRepository>()),
   );
-  
+
   // ViewModels
   getIt.registerFactory<PlayerViewModel>(
     () => PlayerViewModel(

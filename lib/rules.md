@@ -98,6 +98,34 @@ lib/
 
 ## Code Quality
 
+## Testing
+
+12. **Test Structure**: Organize tests following the same structure as the application code:
+    - `test/domain/` for domain layer tests (entities, use cases)
+    - `test/data/` for data layer tests (repositories)
+    - `test/presentation/` for presentation layer tests (views, view models)
+
+13. **Test Types**:
+    - **Unit Tests**: Test individual components in isolation (entities, use cases, view models)
+    - **Widget Tests**: Test UI components and their interactions
+    - **Integration Tests**: Test the interaction between different components
+
+14. **Mocking and Fakes**:
+    - Use `FakePlayerRepository` for testing use cases and view models
+    - Use `Translations.setMockStrings()` for mocking translations in tests
+    - Minimize dependencies on real implementations in tests
+
+15. **Test Coverage**:
+    - All domain entities should have tests
+    - All use cases should have tests
+    - All view models should have tests
+    - Critical UI flows should have widget tests
+
+16. **Naming Convention**:
+    - Test files should be named `<thing_being_tested>_test.dart`
+    - Test groups should describe the class or component being tested
+    - Test cases should describe the behavior being tested in plain language
+
 - **Remove Unused Imports**: Ensure that all unused imports are removed from the code to maintain cleanliness and avoid unnecessary dependencies.
 
 ## Pull Request Guidelines

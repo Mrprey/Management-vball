@@ -50,87 +50,93 @@ class _PlayerViewState extends State<PlayerView> {
   }
 
   Widget _buildContent(BuildContext context, PlayerViewModel model) {
-    return Padding(
-      padding: const EdgeInsets.all(AppSizes.medium),
-      child: Column(
-        children: [
-          TextField(
-            controller: _nameController,
-            decoration:
-                InputDecoration(labelText: Translations.of(context).name),
-          ),
-          TextField(
-            controller: _numberController,
-            decoration:
-                InputDecoration(labelText: Translations.of(context).number),
-            keyboardType: TextInputType.number,
-          ),
-          const SizedBox(height: AppSizes.small),
-          DropdownButtonFormField<String>(
-            value: _selectedPosition,
-            decoration: InputDecoration(
-              labelText: Translations.of(context).role,
-              border: const OutlineInputBorder(),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(Translations.of(context).playerRegistration),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(AppSizes.medium),
+        child: Column(
+          children: [
+            TextField(
+              controller: _nameController,
+              decoration:
+                  InputDecoration(labelText: Translations.of(context).name),
             ),
-            items: PlayerPositions.getPositionItems(),
-            onChanged: (value) {
-              setState(() {
-                if (value != null) {
-                  _selectedPosition = value;
-                }
-              });
-            },
-          ),
-          const SizedBox(height: AppSizes.medium),
-          if (model.errorMessage != null)
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                model.errorMessage!,
-                style: const TextStyle(color: Colors.red),
+            TextField(
+              controller: _numberController,
+              decoration:
+                  InputDecoration(labelText: Translations.of(context).number),
+              keyboardType: TextInputType.number,
+            ),
+            const SizedBox(height: AppSizes.small),
+            DropdownButtonFormField<String>(
+              value: _selectedPosition,
+              decoration: InputDecoration(
+                labelText: Translations.of(context).role,
+                border: const OutlineInputBorder(),
               ),
+              items: PlayerPositions.getPositionItems(),
+              onChanged: (value) {
+                setState(() {
+                  if (value != null) {
+                    _selectedPosition = value;
+                  }
+                });
+              },
             ),
-          ElevatedButton(
-            onPressed: () {
-              final name = _nameController.text;
-              final number = int.tryParse(_numberController.text) ?? 0;
-              final role = _selectedPosition;
+            const SizedBox(height: AppSizes.medium),
+            if (model.errorMessage != null)
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  model.errorMessage!,
+                  style: const TextStyle(color: Colors.red),
+                ),
+              ),
+            ElevatedButton(
+              onPressed: () {
+                final name = _nameController.text;
+                final number = int.tryParse(_numberController.text) ?? 0;
+                final role = _selectedPosition;
 
-              model.addPlayer(name, number, role).then((_) {
-                if (model.errorMessage == null) {
-                  _nameController.clear();
-                  _numberController.clear();
-                  setState(() {
-                    _selectedPosition =
-                        PlayerPositions.setter; // Reset to default
-                  });
+                model.addPlayer(name, number, role).then((_) {
+                  if (model.errorMessage == null) {
+                    _nameController.clear();
+                    _numberController.clear();
+                    setState(() {
+                      _selectedPosition =
+                          PlayerPositions.setter; // Reset to default
+                    });
 
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                        content:
-                            Text(Translations.of(context).playerRegistered)),
-                  );
-                }
-              });
-            },
-            child: Text(Translations.of(context).register),
-          ),
-          const SizedBox(height: AppSizes.medium),
-          Expanded(
-            child: model.players.isEmpty
-                ? const Center(child: Text('No players registered yet'))
-                : ListView.builder(
-                    itemCount: model.players.length,
-                    itemBuilder: (context, index) {
-                      final player = model.players[index];
-                      return ListTile(
-                        title: Text(player.name),
-                        subtitle: Text('${player.number} - ${player.position}'),
-                      );
-                    },
-                  ),
-          ),
-        ],
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                          content:
+                              Text(Translations.of(context).playerRegistered)),
+                    );
+                  }
+                });
+              },
+              child: Text(Translations.of(context).register),
+            ),
+            const SizedBox(height: AppSizes.medium),
+            Expanded(
+              child: model.players.isEmpty
+                  ? const Center(child: Text('No players registered yet'))
+                  : ListView.builder(
+                      itemCount: model.players.length,
+                      itemBuilder: (context, index) {
+                        final player = model.players[index];
+                        return ListTile(
+                          title: Text(player.name),
+                          subtitle:
+                              Text('${player.number} - ${player.position}'),
+                        );
+                      },
+                    ),
+            ),
+          ],
+        ),
       ),
     );
   }

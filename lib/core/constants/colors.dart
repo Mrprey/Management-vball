@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 
-class AppColors {
+class AppColors {  // Esta classe contém todas as cores do aplicativo
   // Light theme
-  static const Color primary = Colors.blue;
-  static const Color secondary = Colors.green;
+  static const Color primary = Colors.blue;   static const Color secondary = Colors.green;    
   static const Color background = Colors.white;
   static const Color surface = Colors.white;
   static const Color error = Colors.red;
   static const Color text = Colors.black;
   static const Color border = Colors.grey;
-  
+
   // Dark theme
   static const Color primaryDark = Color(0xFF1565C0); // Darker blue
   static const Color secondaryDark = Color(0xFF2E7D32); // Darker green

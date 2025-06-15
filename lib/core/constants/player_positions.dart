@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 /// Class that defines the possible volleyball player positions
 /// along with their codes and descriptions.
 class PlayerPositions {
+  PlayerPositions._(); // Private constructor to prevent instantiation
+
   // Position codes
   static const String setter = 'L'; // Levantador (Setter)
   static const String outsideHitter1 = 'P1'; // Ponteiro 1 (Outside Hitter 1)

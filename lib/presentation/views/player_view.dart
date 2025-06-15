@@ -40,14 +40,10 @@ class _PlayerViewState extends State<PlayerView> {
       value: _viewModel,
       child: Consumer<PlayerViewModel>(
         builder: (context, model, child) {
-          return Scaffold(
-            appBar: AppBar(
-              title: Text(Translations.of(context).playerRegistration),
-            ),
-            body: model.isLoading
-                ? const Center(child: CircularProgressIndicator())
-                : _buildContent(context, model),
-          );
+          if (model.isLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          return _buildContent(context, model);
         },
       ),
     );

@@ -8,32 +8,10 @@ import 'package:provider/provider.dart';
 
 import '../../data/repositories/fake_player_repository.dart';
 
-class MockPlayerView extends StatefulWidget {
+class MockPlayerView extends StatelessWidget {
   final PlayerViewModel viewModel;
 
   const MockPlayerView({super.key, required this.viewModel});
-
-  @override
-  _MockPlayerViewState createState() => _MockPlayerViewState();
-}
-
-class _MockPlayerViewState extends State<MockPlayerView> {
-  final _nameController = TextEditingController();
-  final _numberController = TextEditingController();
-  String _selectedPosition = 'L';
-
-  @override
-  void initState() {
-    super.initState();
-    widget.viewModel.loadPlayers();
-  }
-
-  @override
-  void dispose() {
-    _nameController.dispose();
-    _numberController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,98 +23,11 @@ class _MockPlayerViewState extends State<MockPlayerView> {
         builder: (context, model, child) {
           return model.isLoading
               ? const Center(child: CircularProgressIndicator())
-              : Padding(
-                  padding: const EdgeInsets.all(16.0),
+              : const Padding(
+                  padding: EdgeInsets.all(16.0),
                   child: Column(
                     children: [
-                      TextField(
-                        controller: _nameController,
-                        decoration: InputDecoration(
-                            labelText: Translations.of(context).name),
-                      ),
-                      TextField(
-                        controller: _numberController,
-                        decoration: InputDecoration(
-                            labelText: Translations.of(context).number),
-                        keyboardType: TextInputType.number,
-                      ),
-                      DropdownButtonFormField<String>(
-                        value: _selectedPosition,
-                        decoration: InputDecoration(
-                          labelText: Translations.of(context).role,
-                          border: const OutlineInputBorder(),
-                        ),
-                        items: const [
-                          DropdownMenuItem(
-                              value: 'L', child: Text('L - Setter')),
-                          DropdownMenuItem(
-                              value: 'P1',
-                              child: Text('P1 - Outside Hitter 1')),
-                          DropdownMenuItem(
-                              value: 'P2',
-                              child: Text('P2 - Outside Hitter 2')),
-                          DropdownMenuItem(
-                              value: 'O', child: Text('O - Opposite')),
-                          DropdownMenuItem(
-                              value: 'M1',
-                              child: Text('M1 - Middle Blocker 1')),
-                          DropdownMenuItem(
-                              value: 'M2',
-                              child: Text('M2 - Middle Blocker 2')),
-                          DropdownMenuItem(
-                              value: 'Lib', child: Text('Lib - Libero')),
-                        ],
-                        onChanged: (value) {
-                          setState(() {
-                            if (value != null) {
-                              _selectedPosition = value;
-                            }
-                          });
-                        },
-                      ),
-                      const SizedBox(height: 16.0),
-                      ElevatedButton(
-                        onPressed: () {
-                          final name = _nameController.text;
-                          final number =
-                              int.tryParse(_numberController.text) ?? 0;
-                          final role = _selectedPosition;
-
-                          model.addPlayer(name, number, role).then((_) {
-                            if (model.errorMessage == null) {
-                              _nameController.clear();
-                              _numberController.clear();
-                              setState(() {
-                                _selectedPosition = 'L';
-                              });
-
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                    content: Text(Translations.of(context)
-                                        .playerRegistered)),
-                              );
-                            }
-                          });
-                        },
-                        child: Text(Translations.of(context).register),
-                      ),
-                      const SizedBox(height: 16.0),
-                      Expanded(
-                        child: model.players.isEmpty
-                            ? const Center(
-                                child: Text('No players registered yet'))
-                            : ListView.builder(
-                                itemCount: model.players.length,
-                                itemBuilder: (context, index) {
-                                  final player = model.players[index];
-                                  return ListTile(
-                                    title: Text(player.name),
-                                    subtitle: Text(
-                                        '${player.number} - ${player.position}'),
-                                  );
-                                },
-                              ),
-                      ),
+                      Text('Mocked Player View'),
                     ],
                   ),
                 );

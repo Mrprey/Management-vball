@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:management_vball/core/constants/borders.dart';
 import 'package:management_vball/core/constants/colors.dart';
 import 'package:management_vball/core/constants/sizes.dart';
-import 'package:management_vball/core/constants/borders.dart';
 
 class AppThemes {
+  AppThemes._(); // Private constructor to prevent instantiation
+
   static ThemeData get lightTheme {
     return ThemeData(
       primarySwatch: Colors.blue,

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer' as developer;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -21,7 +22,7 @@ class Translations {
       _localizedStrings = Map<String, String>.from(json.decode(jsonString));
       return true;
     } catch (e) {
-      print('Error loading translations: $e');
+      developer.log('Error loading translations: $e', name: 'Translations');
       // Fallback to English if locale translations not found
       if (locale != 'en') {
         return load('en');

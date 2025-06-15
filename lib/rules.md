@@ -186,3 +186,5 @@ Following these rules ensures cleaner, more organized, and maintainable code.
    - Pay attention to the error messages from `flutter analyze`
    - Address each issue before pushing your changes
    - Common issues include unused imports, missing required parameters, and deprecated API usage
+
+23. **Material Design 3**: All screens and components in the project should follow the Material Design 3 guidelines to ensure consistency and modern design.

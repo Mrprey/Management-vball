@@ -7,11 +7,9 @@ class AppThemes {
   static ThemeData get lightTheme {
     return ThemeData(
       primarySwatch: Colors.blue,
-      primaryColor: AppColors.primary,
-      colorScheme: const ColorScheme.light(
+      primaryColor: AppColors.primary,      colorScheme: const ColorScheme.light(
         primary: AppColors.primary,
         secondary: AppColors.secondary,
-        background: AppColors.background,
         surface: AppColors.surface,
         error: AppColors.error,
       ),
@@ -31,8 +29,7 @@ class AppThemes {
             borderRadius: BorderRadius.circular(AppBorders.buttonRadius),
           ),
         ),
-      ),
-      inputDecorationTheme: InputDecorationTheme(
+      ),      inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppBorders.inputRadius),
         ),
@@ -53,7 +50,7 @@ class AppThemes {
           vertical: AppSizes.small,
         ),
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         elevation: 2,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppBorders.cardRadius),
@@ -64,11 +61,9 @@ class AppThemes {
   
   static ThemeData get darkTheme {
     return ThemeData.dark().copyWith(
-      primaryColor: AppColors.primaryDark,
-      colorScheme: const ColorScheme.dark(
+      primaryColor: AppColors.primaryDark,      colorScheme: const ColorScheme.dark(
         primary: AppColors.primaryDark,
         secondary: AppColors.secondaryDark,
-        background: AppColors.backgroundDark,
         surface: AppColors.surfaceDark,
         error: AppColors.errorDark,
       ),
@@ -84,8 +79,7 @@ class AppThemes {
             borderRadius: BorderRadius.circular(AppBorders.buttonRadius),
           ),
         ),
-      ),
-      inputDecorationTheme: InputDecorationTheme(
+      ),      inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppBorders.inputRadius),
         ),
@@ -106,7 +100,7 @@ class AppThemes {
           vertical: AppSizes.small,
         ),
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         elevation: 2,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppBorders.cardRadius),

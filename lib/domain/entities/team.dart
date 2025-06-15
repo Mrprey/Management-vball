@@ -24,7 +24,7 @@ class Team extends Equatable {
       players: players ?? this.players,
     );
   }
-  
+
   Team addPlayer(Player player) {
     final newPlayers = List<Player>.from(players)..add(player);
     return copyWith(players: newPlayers);
@@ -34,7 +34,7 @@ class Team extends Equatable {
     final newPlayers = List<Player>.from(players)..remove(player);
     return copyWith(players: newPlayers);
   }
-  
+
   @override
   List<Object?> get props => [id, name, players];
 }

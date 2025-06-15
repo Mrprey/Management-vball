@@ -16,7 +16,8 @@ class Translations {
 
   static Future<bool> load(String locale) async {
     try {
-      final jsonString = await rootBundle.loadString('assets/translations_$locale.json');
+      final jsonString =
+          await rootBundle.loadString('assets/translations_$locale.json');
       _localizedStrings = Map<String, String>.from(json.decode(jsonString));
       return true;
     } catch (e) {

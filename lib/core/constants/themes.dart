@@ -7,7 +7,8 @@ class AppThemes {
   static ThemeData get lightTheme {
     return ThemeData(
       primarySwatch: Colors.blue,
-      primaryColor: AppColors.primary,      colorScheme: const ColorScheme.light(
+      primaryColor: AppColors.primary,
+      colorScheme: const ColorScheme.light(
         primary: AppColors.primary,
         secondary: AppColors.secondary,
         surface: AppColors.surface,
@@ -29,7 +30,8 @@ class AppThemes {
             borderRadius: BorderRadius.circular(AppBorders.buttonRadius),
           ),
         ),
-      ),      inputDecorationTheme: InputDecorationTheme(
+      ),
+      inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppBorders.inputRadius),
         ),
@@ -58,10 +60,11 @@ class AppThemes {
       ),
     );
   }
-  
+
   static ThemeData get darkTheme {
     return ThemeData.dark().copyWith(
-      primaryColor: AppColors.primaryDark,      colorScheme: const ColorScheme.dark(
+      primaryColor: AppColors.primaryDark,
+      colorScheme: const ColorScheme.dark(
         primary: AppColors.primaryDark,
         secondary: AppColors.secondaryDark,
         surface: AppColors.surfaceDark,
@@ -79,7 +82,8 @@ class AppThemes {
             borderRadius: BorderRadius.circular(AppBorders.buttonRadius),
           ),
         ),
-      ),      inputDecorationTheme: InputDecorationTheme(
+      ),
+      inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppBorders.inputRadius),
         ),

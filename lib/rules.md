@@ -165,3 +165,20 @@ lib/
   ```
 
 Following these rules ensures cleaner, more organized, and maintainable code.
+
+## Git Hooks
+
+20. **Pre-Push Verification**: A pre-push hook is configured to run the following checks before allowing code to be pushed:
+   - **Code Formatting**: Uses `dart format` to ensure all files in `lib` and `test` directories follow proper formatting standards
+   - **Code Analysis**: Uses `flutter analyze` to detect potential errors, code smells, or violations of best practices
+   
+   If any issues are found, the push will be blocked, and the error will be displayed in the terminal. Always make sure your code passes these checks before attempting to push changes.
+
+21. **How to Fix Formatting Issues**:
+   - Run `dart format lib test` to automatically fix formatting issues
+   - Review the changes made by the formatter and ensure they don't introduce any functional issues
+
+22. **How to Fix Analysis Issues**:
+   - Pay attention to the error messages from `flutter analyze`
+   - Address each issue before pushing your changes
+   - Common issues include unused imports, missing required parameters, and deprecated API usage

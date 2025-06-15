@@ -6,7 +6,8 @@ import 'package:management_vball/presentation/view_models/player_view_model.dart
 
 final GetIt getIt = GetIt.instance;
 
-void setupServiceLocator() {  // Repositories
+void setupServiceLocator() {
+  // Repositories
   getIt.registerLazySingleton<PlayerRepository>(
     () => PlayerRepositoryImpl(),
   );

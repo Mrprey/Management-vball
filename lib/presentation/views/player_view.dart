@@ -26,6 +26,7 @@ class _PlayerViewState extends State<PlayerView> {
     _viewModel = getIt<PlayerViewModel>();
     _viewModel.loadPlayers();
   }
+
   @override
   void dispose() {
     _nameController.dispose();
@@ -38,7 +39,8 @@ class _PlayerViewState extends State<PlayerView> {
     return ChangeNotifierProvider.value(
       value: _viewModel,
       child: Consumer<PlayerViewModel>(
-        builder: (context, model, child) {          return Scaffold(
+        builder: (context, model, child) {
+          return Scaffold(
             appBar: AppBar(
               title: Text(Translations.of(context).playerRegistration),
             ),
@@ -60,7 +62,8 @@ class _PlayerViewState extends State<PlayerView> {
             controller: _nameController,
             decoration:
                 InputDecoration(labelText: Translations.of(context).name),
-          ),          TextField(
+          ),
+          TextField(
             controller: _numberController,
             decoration:
                 InputDecoration(labelText: Translations.of(context).number),
@@ -90,7 +93,8 @@ class _PlayerViewState extends State<PlayerView> {
                 model.errorMessage!,
                 style: const TextStyle(color: Colors.red),
               ),
-            ),          ElevatedButton(
+            ),
+          ElevatedButton(
             onPressed: () {
               final name = _nameController.text;
               final number = int.tryParse(_numberController.text) ?? 0;
@@ -101,7 +105,8 @@ class _PlayerViewState extends State<PlayerView> {
                   _nameController.clear();
                   _numberController.clear();
                   setState(() {
-                    _selectedPosition = PlayerPositions.setter; // Reset to default
+                    _selectedPosition =
+                        PlayerPositions.setter; // Reset to default
                   });
 
                   ScaffoldMessenger.of(context).showSnackBar(

@@ -8,7 +8,7 @@ class Position extends Equatable {
     required this.number,
     required this.description,
   });
-  
+
   @override
   List<Object?> get props => [number, description];
 }

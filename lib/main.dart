@@ -5,11 +5,10 @@ import 'package:volei_project/core/di/service_locator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  // Inicializa a injeção de dependências
+  // Initialize dependency injection
   setupServiceLocator();
 
-  // Carrega as traduções (padrão: inglês)
+  // Load translations (default: English)
   await Translations.load('en');
 
   runApp(const App());

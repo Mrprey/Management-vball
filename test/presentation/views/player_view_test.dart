@@ -125,7 +125,7 @@ void main() {
     };
     Translations.setMockStrings(mockTranslations);
     
-    // Limpar o singleton GetIt se estiver inicializado
+    // Clear GetIt singleton if initialized
     if (GetIt.I.isRegistered<PlayerViewModel>()) {
       await GetIt.I.reset();
     }
@@ -150,11 +150,11 @@ void main() {
       (WidgetTester tester) async {
     // Arrange
     await pumpPlayerView(tester);
-    await tester.pumpAndSettle(); // Aguardar renderização completa
+    await tester.pumpAndSettle(); // Wait for complete rendering
 
     // Assert
     expect(find.byType(TextField), findsAtLeast(3)); // Pelo menos 3 campos de texto
-    expect(find.byType(ElevatedButton), findsOneWidget); // Botão de registro
+    expect(find.byType(ElevatedButton), findsOneWidget); // Register button
   });
 
   testWidgets('PlayerView should register a player and show message',

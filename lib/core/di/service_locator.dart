@@ -6,13 +6,12 @@ import 'package:volei_project/presentation/view_models/player_view_model.dart';
 
 final GetIt getIt = GetIt.instance;
 
-void setupServiceLocator() {
-  // Repositórios
+void setupServiceLocator() {  // Repositories
   getIt.registerLazySingleton<PlayerRepository>(
     () => PlayerRepositoryImpl(),
   );
 
-  // Casos de uso
+  // Use Cases
   getIt.registerFactory<RegisterPlayerUseCase>(
     () => RegisterPlayerUseCase(getIt<PlayerRepository>()),
   );

@@ -18,7 +18,7 @@ void main() {
       getAllPlayersUseCase = GetAllPlayersUseCase(repository);
       viewModel = PlayerViewModel(registerUseCase, getAllPlayersUseCase);
       
-      // Limpar o repositório entre testes
+      // Clear repository between tests
       repository.clear();
     });
 

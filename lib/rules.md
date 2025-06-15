@@ -51,24 +51,24 @@
 ```
 lib/
 ├── presentation/
-│   ├── views/          # Telas completas da aplicação
-│   ├── widgets/        # Componentes reutilizáveis da UI
-│   └── view_models/    # ViewModels para cada view
+│   ├── views/          # Complete application screens
+│   ├── widgets/        # Reusable UI components
+│   └── view_models/    # ViewModels for each view
 ├── domain/
-│   ├── entities/       # Modelos de domínio
-│   ├── repositories/   # Interfaces dos repositórios
-│   ├── use_cases/      # Casos de uso
-│   └── services/       # Interfaces de serviços
+│   ├── entities/       # Domain models
+│   ├── repositories/   # Repository interfaces
+│   ├── use_cases/      # Use cases
+│   └── services/       # Service interfaces
 ├── data/
-│   ├── repositories/   # Implementações dos repositórios
-│   ├── data_sources/   # Fontes de dados
-│   └── models/         # DTOs e modelos de dados
+│   ├── repositories/   # Repository implementations
+│   ├── data_sources/   # Data sources
+│   └── models/         # DTOs and data models
 ├── core/
-│   ├── constants/      # Constantes globais
-│   ├── utils/          # Utilidades e extensões
-│   ├── di/             # Container de injeção de dependência
-│   └── exceptions/     # Tratamento de exceções
-└── main.dart           # Ponto de entrada da aplicação
+│   ├── constants/      # Global constants
+│   ├── utils/          # Utilities and extensions
+│   ├── di/             # Dependency injection container
+│   └── exceptions/     # Exception handling
+└── main.dart           # Application entry point
 ```
 
 ## Project Constants

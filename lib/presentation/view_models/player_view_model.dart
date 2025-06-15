@@ -23,7 +23,7 @@ class PlayerViewModel extends ChangeNotifier {
 
     try {
       await _registerPlayerUseCase.execute(name, number, role);
-      await loadPlayers(); // Recarrega lista após adicionar
+      await loadPlayers(); // Reload list after adding
     } catch (e) {
       _errorMessage = e.toString();
       notifyListeners();

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:volei_project/core/constants/sizes.dart';
-import 'package:volei_project/core/constants/translations.dart';
-import 'package:volei_project/core/di/service_locator.dart';
-import 'package:volei_project/presentation/view_models/player_view_model.dart';
+import 'package:management_vball/core/constants/sizes.dart';
+import 'package:management_vball/core/constants/translations.dart';
+import 'package:management_vball/core/di/service_locator.dart';
+import 'package:management_vball/presentation/view_models/player_view_model.dart';
 
 class PlayerView extends StatefulWidget {
   const PlayerView({super.key});

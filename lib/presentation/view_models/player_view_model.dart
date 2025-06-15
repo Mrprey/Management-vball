@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:volei_project/domain/entities/player.dart';
-import 'package:volei_project/domain/use_cases/player_use_cases.dart';
+import 'package:management_vball/domain/entities/player.dart';
+import 'package:management_vball/domain/use_cases/player_use_cases.dart';
 
 class PlayerViewModel extends ChangeNotifier {
   final RegisterPlayerUseCase _registerPlayerUseCase;

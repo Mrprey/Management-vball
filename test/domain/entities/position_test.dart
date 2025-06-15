@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:volei_project/domain/entities/position.dart';
+import 'package:management_vball/domain/entities/position.dart';
 
 void main() {
   group('Position', () {

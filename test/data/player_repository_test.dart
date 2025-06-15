@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:volei_project/domain/entities/player.dart';
+import 'package:management_vball/domain/entities/player.dart';
 
 import 'repositories/fake_player_repository.dart';
 

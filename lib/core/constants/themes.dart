@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:volei_project/core/constants/colors.dart';
-import 'package:volei_project/core/constants/sizes.dart';
-import 'package:volei_project/core/constants/borders.dart';
+import 'package:management_vball/core/constants/colors.dart';
+import 'package:management_vball/core/constants/sizes.dart';
+import 'package:management_vball/core/constants/borders.dart';
 
 class AppThemes {
   static ThemeData get lightTheme {

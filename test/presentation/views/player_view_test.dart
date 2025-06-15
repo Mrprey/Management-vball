@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
-import 'package:volei_project/domain/use_cases/player_use_cases.dart';
-import 'package:volei_project/presentation/view_models/player_view_model.dart';
-import 'package:volei_project/core/constants/translations.dart';
+import 'package:management_vball/domain/use_cases/player_use_cases.dart';
+import 'package:management_vball/presentation/view_models/player_view_model.dart';
+import 'package:management_vball/core/constants/translations.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../data/repositories/fake_player_repository.dart';

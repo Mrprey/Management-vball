@@ -1,8 +1,8 @@
 import 'package:get_it/get_it.dart';
-import 'package:volei_project/data/repositories/player_repository_impl.dart';
-import 'package:volei_project/domain/repositories/player_repository.dart';
-import 'package:volei_project/domain/use_cases/player_use_cases.dart';
-import 'package:volei_project/presentation/view_models/player_view_model.dart';
+import 'package:management_vball/data/repositories/player_repository_impl.dart';
+import 'package:management_vball/domain/repositories/player_repository.dart';
+import 'package:management_vball/domain/use_cases/player_use_cases.dart';
+import 'package:management_vball/presentation/view_models/player_view_model.dart';
 
 final GetIt getIt = GetIt.instance;
 

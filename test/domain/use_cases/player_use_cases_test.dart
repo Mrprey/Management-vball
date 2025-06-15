@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:volei_project/domain/entities/player.dart';
-import 'package:volei_project/domain/use_cases/player_use_cases.dart';
+import 'package:management_vball/domain/entities/player.dart';
+import 'package:management_vball/domain/use_cases/player_use_cases.dart';
 
 import '../../data/repositories/fake_player_repository.dart';
 

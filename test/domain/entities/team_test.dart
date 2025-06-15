@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:volei_project/domain/entities/player.dart';
-import 'package:volei_project/domain/entities/team.dart';
+import 'package:management_vball/domain/entities/player.dart';
+import 'package:management_vball/domain/entities/team.dart';
 
 void main() {
   group('Team', () {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:volei_project/core/constants/themes.dart';
-import 'package:volei_project/presentation/views/player_view.dart';
+import 'package:management_vball/core/constants/themes.dart';
+import 'package:management_vball/presentation/views/player_view.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
